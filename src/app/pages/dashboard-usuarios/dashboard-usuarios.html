@@ -1,0 +1,125 @@
+<div class="dashboard-container">
+
+  <h1>Dashboard Usuarios</h1>
+
+  <div class="formulario card">
+
+    <input
+      type="text"
+      placeholder="Nombre"
+      [(ngModel)]="nombre"
+    />
+
+    <input
+      type="text"
+      placeholder="Apellido"
+      [(ngModel)]="apellido"
+    />
+
+    <input
+      type="email"
+      placeholder="Correo"
+      [(ngModel)]="correo"
+    />
+
+    <input
+      type="text"
+      placeholder="Usuario"
+      [(ngModel)]="nombreUsuario"
+    />
+
+    <input
+      type="password"
+      placeholder="Contraseña"
+      [(ngModel)]="password"
+    />
+
+    <div class="radios">
+
+      <label>
+        <input
+          type="radio"
+          value="usuario"
+          [(ngModel)]="perfil"
+          name="perfil"
+        />
+        Usuario
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          value="administrador"
+          [(ngModel)]="perfil"
+          name="perfil"
+        />
+        Administrador
+      </label>
+
+    </div>
+
+    <button
+      type="button"
+      (click)="crearUsuario()"
+    >
+      Crear usuario
+    </button>
+
+  </div>
+
+  <div
+    class="usuario-card"
+    *ngFor="let usuario of usuarios"
+    appResaltar
+    appSombra
+  >
+
+    <div>
+      <h3>
+        {{ usuario.nombre }} {{ usuario.apellido }}
+      </h3>
+
+      <p>
+        @{{ usuario.nombreUsuario }}
+      </p>
+
+      <p>
+        {{ usuario.correo }}
+      </p>
+
+      <p>
+        Perfil:
+        {{ usuario.perfil | perfilNombre }}
+      </p>
+
+      <p>
+        Estado:
+        {{ usuario.activo | estadoUsuario }}
+      </p>
+    </div>
+
+    <div class="acciones">
+
+      <button
+        type="button"
+        class="deshabilitar"
+        *ngIf="usuario.activo"
+        (click)="deshabilitar(usuario._id)"
+      >
+        Deshabilitar
+      </button>
+
+      <button
+        type="button"
+        class="habilitar"
+        *ngIf="!usuario.activo"
+        (click)="habilitar(usuario._id)"
+      >
+        Habilitar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

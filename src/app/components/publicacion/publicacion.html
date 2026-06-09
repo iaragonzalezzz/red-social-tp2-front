@@ -1,0 +1,152 @@
+<section class="post card">
+
+  <div class="post-header">
+
+    <a
+      class="autor autor-link"
+      [routerLink]="[
+        '/perfil',
+        publicacion.usuario?._id || publicacion.usuario
+      ]"
+    >
+
+      <div
+        class="avatar-imagen chico"
+        *ngIf="publicacion.usuario?.fotoPerfil"
+      >
+        <img
+          [src]="publicacion.usuario.fotoPerfil"
+          alt="Foto perfil"
+        />
+      </div>
+
+      <div
+        class="avatar chico"
+        *ngIf="!publicacion.usuario?.fotoPerfil"
+      >
+        {{ publicacion.usuario?.nombre?.charAt(0) || 'U' }}
+      </div>
+
+      <div>
+        <strong>
+          @{{ publicacion.usuario?.nombreUsuario || 'usuario' }}
+        </strong>
+
+        <p>
+          {{ publicacion.createdAt | date:'short' }}
+        </p>
+      </div>
+
+    </a>
+
+    <button
+      type="button"
+      class="boton-eliminar"
+      *ngIf="puedeEliminar()"
+      (click)="eliminar()"
+    >
+      Eliminar
+    </button>
+
+  </div>
+
+  <a
+    [routerLink]="['/publicacion', publicacion._id]"
+    class="titulo-link"
+  >
+    <h3>
+      {{ publicacion.titulo }}
+    </h3>
+  </a>
+
+  <p class="mensaje">
+    {{ publicacion.mensaje }}
+  </p>
+
+  <img
+    *ngIf="publicacion.imagen"
+    [src]="publicacion.imagen"
+    alt="Publicación"
+  />
+
+  <div class="acciones">
+
+    <button
+      type="button"
+      (click)="cambiarLike()"
+    >
+      {{ dioLike() ? 'Quitar me gusta' : 'Me gusta' }}
+      ({{ cantidadLikes() }})
+    </button>
+
+    <button
+      type="button"
+      (click)="cambiarGuardado()"
+    >
+      {{ estaGuardada() ? 'Guardada' : 'Guardar' }}
+      ({{ cantidadGuardados() }})
+    </button>
+
+    <button
+      type="button"
+      (click)="abrirCompartir()"
+    >
+      Compartir
+      ({{ cantidadCompartidos() }})
+    </button>
+
+  </div>
+
+  <a
+    [routerLink]="['/publicacion', publicacion._id]"
+    class="comentarios-link"
+  >
+     Ver comentarios
+  </a>
+
+  <div
+    class="modal-compartir"
+    *ngIf="mostrarCompartir"
+  >
+
+    <div class="modal-card">
+
+      <h3>Compartir publicación</h3>
+
+      <select [(ngModel)]="usuarioDestino">
+        <option value="">
+          Elegí un usuario
+        </option>
+
+        <option
+          *ngFor="let usuario of usuarios"
+          [value]="usuario._id"
+        >
+          @{{ usuario.nombreUsuario }}
+        </option>
+      </select>
+
+      <div class="modal-botones">
+
+        <button
+          type="button"
+          class="cancelar"
+          (click)="mostrarCompartir = false"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="button"
+          (click)="compartir()"
+        >
+          Compartir
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

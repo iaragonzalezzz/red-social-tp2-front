@@ -1,0 +1,157 @@
+<div class="layout">
+
+  <aside class="sidebar card">
+
+    <h2>LilaSocial 💜</h2>
+
+    <div class="usuario-box" *ngIf="usuario">
+
+      <div class="avatar-imagen" *ngIf="usuario?.fotoPerfil">
+        <img [src]="usuario.fotoPerfil" alt="Foto perfil" />
+      </div>
+
+      <div class="avatar" *ngIf="!usuario?.fotoPerfil">
+        {{ usuario.nombre.charAt(0) }}
+      </div>
+
+      <div>
+        <strong>
+          {{ usuario.nombre }} {{ usuario.apellido }}
+        </strong>
+
+        <p>
+          @{{ usuario.nombreUsuario }}
+        </p>
+      </div>
+
+    </div>
+
+    <nav>
+      <a routerLink="/publicaciones">
+        Inicio
+      </a>
+
+      <a routerLink="/mi-perfil">
+        Mi perfil
+      </a>
+
+      <a routerLink="/guardados">
+        Guardados
+      </a>
+
+      <a routerLink="/compartidos">
+        Compartidos
+      </a>
+
+      <a
+        *ngIf="usuario?.perfil === 'administrador'"
+        routerLink="/dashboard-usuarios"
+      >
+        Usuarios
+      </a>
+
+      <a
+        *ngIf="usuario?.perfil === 'administrador'"
+        routerLink="/dashboard-estadisticas"
+      >
+        Estadísticas
+      </a>
+
+      <button
+        type="button"
+        class="boton-salir"
+        (click)="cerrarSesion()"
+      >
+        Cerrar sesión
+      </button>
+    </nav>
+
+  </aside>
+
+  <main
+    class="feed"
+    (window:scroll)="alHacerScroll()"
+  >
+
+    <section class="crear-post card">
+
+      <input
+        type="text"
+        placeholder="Título de la publicación"
+        [(ngModel)]="titulo"
+      />
+
+      <textarea
+        placeholder="¿Qué estás pensando?"
+        [(ngModel)]="mensaje"
+      ></textarea>
+
+      <input
+        type="file"
+        accept="image/*"
+        (change)="seleccionarImagen($event)"
+      />
+
+      <button
+        type="button"
+        (click)="crearPublicacion()"
+      >
+        Publicar
+      </button>
+
+    </section>
+
+    <section class="ordenamiento card">
+
+      <label>
+        Ordenar por
+      </label>
+
+      <select
+        [(ngModel)]="orden"
+        (change)="cambiarOrden()"
+      >
+        <option value="fecha">
+          Fecha
+        </option>
+
+        <option value="likes">
+          Me gusta
+        </option>
+
+        <option value="guardados">
+          Más guardados
+        </option>
+
+        <option value="compartidos">
+          Más compartidos
+        </option>
+      </select>
+
+    </section>
+
+    <app-publicacion
+      *ngFor="let publicacion of publicaciones"
+      [publicacion]="publicacion"
+      [usuarioActual]="usuario"
+      (actualizar)="recargarPublicaciones()"
+    >
+    </app-publicacion>
+
+    <section
+      class="cargando-mas card"
+      *ngIf="cargando"
+    >
+      Cargando más publicaciones...
+    </section>
+
+    <section
+      class="cargando-mas card"
+      *ngIf="!hayMas && publicaciones.length > 0"
+    >
+      No hay más publicaciones para mostrar.
+    </section>
+
+  </main>
+
+</div>

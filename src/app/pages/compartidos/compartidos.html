@@ -1,0 +1,55 @@
+<div class="pagina">
+
+  <aside class="sidebar card">
+
+    <h2>LilaSocial 💜</h2>
+
+    <nav>
+      <a routerLink="/publicaciones">Inicio</a>
+      <a routerLink="/mi-perfil">Mi perfil</a>
+      <a routerLink="/guardados">Guardados</a>
+      <a routerLink="/compartidos">Compartidos</a>
+    </nav>
+
+  </aside>
+
+  <main class="contenido">
+
+    <h1>Publicaciones compartidas conmigo</h1>
+
+    <p
+      class="vacio"
+      *ngIf="publicaciones.length === 0"
+    >
+      Todavía no te compartieron publicaciones.
+    </p>
+
+    <section
+      class="compartido-card"
+      *ngFor="let publicacion of publicaciones"
+    >
+
+      <div class="compartido-info">
+
+        <span>
+          Compartido por:
+        </span>
+
+        <strong>
+          @{{ quienCompartio(publicacion)?.nombreUsuario || 'usuario' }}
+        </strong>
+
+      </div>
+
+      <app-publicacion
+        [publicacion]="publicacion"
+        [usuarioActual]="usuario"
+        (actualizar)="cargarCompartidos()"
+      >
+      </app-publicacion>
+
+    </section>
+
+  </main>
+
+</div>

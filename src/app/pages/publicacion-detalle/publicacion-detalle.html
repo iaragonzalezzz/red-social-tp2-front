@@ -1,0 +1,143 @@
+<div
+  class="detalle-container"
+  *ngIf="publicacion"
+>
+
+  <div class="volver">
+    <a routerLink="/publicaciones">
+      ← Volver
+    </a>
+  </div>
+
+  <div class="publicacion-card">
+
+    <div class="usuario-info">
+
+      <img
+        [src]="
+          publicacion.usuario?.fotoPerfil ||
+          'https://i.pravatar.cc/150'
+        "
+      />
+
+      <div>
+        <h3>
+          @{{ publicacion.usuario?.nombreUsuario }}
+        </h3>
+
+        <p>
+          {{
+            publicacion.createdAt
+              | date:'dd/MM/yyyy HH:mm'
+          }}
+        </p>
+      </div>
+
+    </div>
+
+    <h2>
+      {{ publicacion.titulo }}
+    </h2>
+
+    <p class="mensaje">
+      {{ publicacion.descripcion }}
+    </p>
+
+    <img
+      *ngIf="publicacion.imagen"
+      [src]="publicacion.imagen"
+      class="imagen-post"
+    />
+
+  </div>
+
+  <div class="comentarios-card">
+
+    <h3>
+      Comentarios
+    </h3>
+
+    <div class="nuevo-comentario">
+
+      <textarea
+        [(ngModel)]="nuevoComentario"
+        placeholder="Escribí un comentario..."
+      ></textarea>
+
+      <button (click)="comentar()">
+        Comentar
+      </button>
+
+    </div>
+
+    <div
+      class="comentario"
+      *ngFor="let comentario of comentarios"
+    >
+
+      <div class="comentario-header">
+
+        <strong>
+          @{{ comentario.usuario?.nombreUsuario }}
+        </strong>
+
+        <span *ngIf="comentario.modificado">
+          editado
+        </span>
+
+      </div>
+
+      <div
+        *ngIf="
+          comentarioEditando !== comentario._id
+        "
+      >
+
+        <p>
+          {{ comentario.mensaje }}
+        </p>
+
+      </div>
+
+      <div
+        *ngIf="
+          comentarioEditando === comentario._id
+        "
+      >
+
+        <textarea
+          [(ngModel)]="mensajeEditado"
+        ></textarea>
+
+        <button
+          class="guardar-btn"
+          (click)="guardarEdicion(comentario)"
+        >
+          Guardar
+        </button>
+
+      </div>
+
+      <button
+        class="editar-btn"
+        *ngIf="
+          comentario.usuario?._id ===
+          usuarioActual?._id
+        "
+        (click)="iniciarEdicion(comentario)"
+      >
+        Editar
+      </button>
+
+    </div>
+
+    <button
+      class="cargar-btn"
+      (click)="cargarMas()"
+    >
+      Cargar más
+    </button>
+
+  </div>
+
+</div>

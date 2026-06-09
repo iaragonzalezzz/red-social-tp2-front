@@ -1,0 +1,51 @@
+.pagina {
+  min-height: 100vh;
+  display: flex;
+  background: #f5f1fb;
+}
+
+.sidebar {
+  width: 260px;
+  margin: 20px;
+  height: calc(100vh - 40px);
+}
+
+.sidebar h2 {
+  color: #a855f7;
+  margin-bottom: 30px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #444;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.sidebar a:hover {
+  background: #f0e7ff;
+}
+
+.contenido {
+  flex: 1;
+  max-width: 720px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contenido h1 {
+  color: #9333ea;
+}
+
+.vacio {
+  color: #777;
+}

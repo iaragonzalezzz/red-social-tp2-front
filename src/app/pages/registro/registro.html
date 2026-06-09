@@ -1,0 +1,143 @@
+<div class="contenedor-registro">
+
+  <div class="card registro-card">
+
+    <h1>LilaSocial</h1>
+
+    <p class="subtitulo">
+      Creá tu cuenta
+    </p>
+
+    <form
+      #formRegistro="ngForm"
+      (ngSubmit)="registrarse()"
+    >
+
+      <input
+        type="text"
+        placeholder="Nombre"
+        [(ngModel)]="nombre"
+        name="nombre"
+        required
+      />
+
+      <input
+        type="text"
+        placeholder="Apellido"
+        [(ngModel)]="apellido"
+        name="apellido"
+        required
+      />
+
+      <input
+        type="email"
+        placeholder="Correo"
+        [(ngModel)]="correo"
+        name="correo"
+        required
+      />
+
+      <input
+        type="text"
+        placeholder="Nombre de usuario"
+        [(ngModel)]="nombreUsuario"
+        name="nombreUsuario"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Repetir contraseña"
+        [(ngModel)]="repetirPassword"
+        name="repetirPassword"
+        required
+      />
+
+      <input
+        type="date"
+        [(ngModel)]="fechaNacimiento"
+        name="fechaNacimiento"
+      />
+
+      <textarea
+        placeholder="Descripción breve"
+        [(ngModel)]="descripcion"
+        name="descripcion"
+      ></textarea>
+
+      <input
+        type="file"
+        accept="image/*"
+        (change)="seleccionarImagen($event)"
+      />
+
+      <p
+        class="error"
+        *ngIf="
+          formRegistro.submitted &&
+          (
+            !nombre ||
+            !apellido ||
+            !correo ||
+            !nombreUsuario ||
+            !password ||
+            !repetirPassword
+          )
+        "
+      >
+        Completá todos los campos obligatorios.
+      </p>
+
+      <p
+        class="error"
+        *ngIf="passwordInvalida()"
+      >
+        La contraseña debe tener 8 caracteres,
+        una mayúscula y un número.
+      </p>
+
+      <p
+        class="error"
+        *ngIf="
+          password &&
+          repetirPassword &&
+          password !== repetirPassword
+        "
+      >
+        Las contraseñas no coinciden.
+      </p>
+
+      <button type="submit">
+        Registrarme
+      </button>
+
+    </form>
+
+    <p
+      class="error"
+      *ngIf="mensajeError"
+    >
+      {{ mensajeError }}
+    </p>
+
+    <p class="login-link">
+
+      ¿Ya tenés cuenta?
+
+      <a routerLink="/login">
+        Iniciá sesión
+      </a>
+
+    </p>
+
+  </div>
+
+</div>

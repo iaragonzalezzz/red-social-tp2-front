@@ -1,0 +1,37 @@
+<div class="pagina">
+
+  <aside class="sidebar card">
+
+    <h2>LilaSocial 💜</h2>
+
+    <nav>
+      <a routerLink="/publicaciones">Inicio</a>
+      <a routerLink="/mi-perfil">Mi perfil</a>
+      <a routerLink="/guardados">Guardados</a>
+      <a routerLink="/compartidos">Compartidos</a>
+    </nav>
+
+  </aside>
+
+  <main class="contenido">
+
+    <h1>Publicaciones guardadas</h1>
+
+    <p
+      class="vacio"
+      *ngIf="publicaciones.length === 0"
+    >
+      Todavía no guardaste publicaciones.
+    </p>
+
+    <app-publicacion
+      *ngFor="let publicacion of publicaciones"
+      [publicacion]="publicacion"
+      [usuarioActual]="usuario"
+      (actualizar)="cargarGuardados()"
+    >
+    </app-publicacion>
+
+  </main>
+
+</div>

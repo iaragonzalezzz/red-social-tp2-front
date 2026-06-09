@@ -1,0 +1,114 @@
+<div class="perfil-container">
+
+  <aside class="sidebar card">
+
+    <h2>LilaSocial 💜</h2>
+
+    <nav>
+      <a routerLink="/publicaciones">
+        Inicio
+      </a>
+
+      <a routerLink="/mi-perfil">
+        Mi perfil
+      </a>
+
+      <a routerLink="/dashboard-usuarios">
+        Usuarios
+      </a>
+
+      <a routerLink="/dashboard-estadisticas">
+        Estadísticas
+      </a>
+    </nav>
+
+  </aside>
+
+  <main class="perfil-main">
+
+    <section
+      class="perfil-header card"
+      *ngIf="usuario"
+    >
+
+      <div
+        class="avatar-real"
+        *ngIf="usuario?.fotoPerfil"
+      >
+        <img
+          [src]="usuario.fotoPerfil"
+          alt="Foto perfil"
+        />
+      </div>
+
+      <div
+        class="avatar-grande"
+        *ngIf="!usuario?.fotoPerfil"
+      >
+        {{ usuario?.nombre?.charAt(0) }}
+      </div>
+
+      <div class="info">
+
+        <h1>
+          {{ usuario?.nombre }}
+          {{ usuario?.apellido }}
+        </h1>
+
+        <p class="username">
+          @{{ usuario?.nombreUsuario }}
+        </p>
+
+        <p class="descripcion">
+          {{ usuario?.descripcion }}
+        </p>
+
+        <div class="datos">
+
+          <div>
+            <strong>Perfil</strong>
+            <span>{{ usuario?.perfil }}</span>
+          </div>
+
+          <div>
+            <strong>Correo</strong>
+            <span>{{ usuario?.correo }}</span>
+          </div>
+
+          <div>
+            <strong>Nacimiento</strong>
+            <span>{{ usuario?.fechaNacimiento }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="mis-publicaciones">
+
+      <h2>
+        Últimas publicaciones
+      </h2>
+
+      <p
+        class="sin-publicaciones"
+        *ngIf="publicaciones.length === 0"
+      >
+        Este usuario todavía no tiene publicaciones.
+      </p>
+
+      <app-publicacion
+        *ngFor="let publicacion of publicaciones"
+        [publicacion]="publicacion"
+        [usuarioActual]="usuarioActual"
+        (actualizar)="cargarPublicaciones(usuario?._id)"
+      >
+      </app-publicacion>
+
+    </section>
+
+  </main>
+
+</div>

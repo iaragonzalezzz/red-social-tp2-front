@@ -1,0 +1,41 @@
+.cargando-container {
+  min-height: 100vh;
+  background-color: #f5f1fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cargando-card {
+  width: 320px;
+  text-align: center;
+}
+
+.cargando-card h1 {
+  color: #a855f7;
+  margin-top: 20px;
+}
+
+.cargando-card p {
+  color: #777;
+}
+
+.spinner {
+  width: 55px;
+  height: 55px;
+  border: 6px solid #eadcff;
+  border-top: 6px solid #a855f7;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

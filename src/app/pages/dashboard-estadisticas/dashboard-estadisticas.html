@@ -1,0 +1,90 @@
+<div class="contenedor-estadisticas">
+
+  <h1>Dashboard Estadísticas</h1>
+
+  <section class="filtros-card">
+
+    <div class="campo">
+      <label>Desde</label>
+      <input
+        type="date"
+        [(ngModel)]="desde"
+      />
+    </div>
+
+    <div class="campo">
+      <label>Hasta</label>
+      <input
+        type="date"
+        [(ngModel)]="hasta"
+      />
+    </div>
+
+    <button
+      type="button"
+      (click)="cargarEstadisticas()"
+    >
+      Cargar estadísticas
+    </button>
+
+  </section>
+
+  <section class="graficos-grid">
+
+    <div class="grafico-card grande">
+      <h2>Publicaciones por usuario</h2>
+      <p>Cantidad de publicaciones realizadas en el período seleccionado.</p>
+
+      <div class="canvas-box">
+        <canvas id="grafico1"></canvas>
+      </div>
+    </div>
+
+    <div class="grafico-card">
+      <h2>Comentarios totales</h2>
+      <p>Total de comentarios realizados en el período seleccionado.</p>
+
+      <div class="canvas-box chico">
+        <canvas id="grafico2"></canvas>
+      </div>
+    </div>
+
+    <div class="grafico-card grande">
+      <h2>Comentarios por publicación</h2>
+      <p>Cantidad de comentarios recibidos por cada publicación.</p>
+
+      <div class="canvas-box">
+        <canvas id="grafico3"></canvas>
+      </div>
+    </div>
+
+    <div class="grafico-card grande">
+      <h2>Ingresos por usuario</h2>
+      <p>Cantidad de logins realizados por cada usuario.</p>
+
+      <div class="canvas-box">
+        <canvas id="grafico4"></canvas>
+      </div>
+    </div>
+
+    <div class="grafico-card">
+      <h2>Visitas a perfiles</h2>
+      <p>Visitas recibidas en perfiles de otros usuarios.</p>
+
+      <div class="canvas-box chico">
+        <canvas id="grafico5"></canvas>
+      </div>
+    </div>
+
+    <div class="grafico-card grande">
+      <h2>Me gusta por día</h2>
+      <p>Cantidad de likes otorgados por día.</p>
+
+      <div class="canvas-box">
+        <canvas id="grafico6"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+</div>
