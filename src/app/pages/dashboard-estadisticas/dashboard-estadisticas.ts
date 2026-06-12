@@ -38,24 +38,27 @@ export class DashboardEstadisticas {
   }
 
   graficoPublicaciones() {
-    this.estadisticasService
-      .publicacionesPorUsuario(this.desde, this.hasta)
-      .subscribe((data: any) => {
-        const grafico = new Chart('grafico1', {
-          type: 'bar',
-          data: {
-            labels: data.map((d: any) => d.usuario),
-            datasets: [
-              {
-                label: 'Publicaciones',
-                data: data.map((d: any) => d.cantidad),
-              },
-            ],
-          },
-        });
+  this.estadisticasService
+    .publicacionesPorUsuario(this.desde, this.hasta)
+    .subscribe((data: any) => {
 
-        this.graficos.push(grafico);
+      console.log('PUBLICACIONES POR USUARIO:', data);
+
+      const grafico = new Chart('grafico1', {
+        type: 'bar',
+        data: {
+          labels: data.map((d: any) => d.usuario),
+          datasets: [
+            {
+              label: 'Publicaciones',
+              data: data.map((d: any) => d.cantidad),
+            },
+          ],
+        },
       });
+
+      this.graficos.push(grafico);
+    });
   }
 
   graficoComentariosTotal() {
@@ -79,24 +82,27 @@ export class DashboardEstadisticas {
   }
 
   graficoComentariosPorPublicacion() {
-    this.estadisticasService
-      .comentariosPorPublicacion(this.desde, this.hasta)
-      .subscribe((data: any) => {
-        const grafico = new Chart('grafico3', {
-          type: 'line',
-          data: {
-            labels: data.map((d: any) => d.publicacion),
-            datasets: [
-              {
-                label: 'Comentarios',
-                data: data.map((d: any) => d.cantidad),
-              },
-            ],
-          },
-        });
+  this.estadisticasService
+    .comentariosPorPublicacion(this.desde, this.hasta)
+    .subscribe((data: any) => {
 
-        this.graficos.push(grafico);
+      console.log('COMENTARIOS POR PUBLICACION:', data);
+
+      const grafico = new Chart('grafico3', {
+        type: 'bar',
+        data: {
+          labels: data.map((d: any) => d.publicacion),
+          datasets: [
+            {
+              label: 'Comentarios',
+              data: data.map((d: any) => d.cantidad),
+            },
+          ],
+        },
       });
+
+      this.graficos.push(grafico);
+    });
   }
 
   graficoLoginsPorUsuario() {
