@@ -3,51 +3,155 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
-  background-color: #f5f1fb;
+  padding: 34px;
+  background: radial-gradient(circle at top, #f1ddff, #f8f3ff 45%, #ffffff);
+}
+
+.card {
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 20px 45px rgba(147, 51, 234, 0.14);
 }
 
 .registro-card {
-  width: 450px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  width: 100%;
+  max-width: 520px;
+  padding: 34px;
 }
 
-h1 {
+.brand {
   text-align: center;
-  color: #a855f7;
+  margin-bottom: 26px;
+}
+
+.brand img {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.brand h1 {
+  margin: 0;
+  color: #9333ea;
   font-size: 42px;
 }
 
-.subtitulo {
-  text-align: center;
-  color: #777;
+.brand p {
+  margin: 8px 0 0;
+  color: #7c6b8c;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid #ded3ef;
+  outline: none;
+  background: #faf7ff;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #a855f7;
+  background: white;
 }
 
 textarea {
   resize: none;
-  height: 100px;
+  min-height: 95px;
+}
+
+.fecha-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #6b5b7c;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.file-box {
+  border: 1px dashed #c084fc;
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: #fbf7ff;
+  color: #9333ea;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: center;
+}
+
+.file-box input {
+  display: none;
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #bd7bff, #9333ea);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.92;
 }
 
 .error {
   color: crimson;
   text-align: center;
+  margin: 4px 0;
+  font-size: 14px;
 }
 
 .login-link {
   text-align: center;
-  color: #666;
+  color: #5f526e;
+  margin: 24px 0 0;
 }
 
-a {
-  color: #a855f7;
+.login-link a {
+  color: #9333ea;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 800;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .registro-card {
+    padding: 26px;
+  }
+}
+
+.file-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.file-box small {
+  color: #7c6b8c;
+  font-size: 13px;
+  font-weight: 600;
 }

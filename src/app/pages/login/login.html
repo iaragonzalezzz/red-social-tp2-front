@@ -1,24 +1,20 @@
-<div class="contenedor-login">
+<div class="login-page">
 
-  <div class="card login-card">
+  <section class="login-card">
 
-    <h1>LilaSocial</h1>
+    <div class="brand">
+      <img src="favicon.png" alt="LilaSocial" />
+      <h1>LilaSocial</h1>
+      <p>Conectá, compartí y descubrí publicaciones.</p>
+    </div>
 
-    <p class="subtitulo">
-      Iniciá sesión para continuar
-    </p>
-
-    <form
-      #formLogin="ngForm"
-      (ngSubmit)="iniciarSesion()"
-    >
+    <form>
 
       <input
         type="text"
         placeholder="Usuario o correo"
         [(ngModel)]="usuarioOCorreo"
         name="usuarioOCorreo"
-        required
       />
 
       <input
@@ -26,40 +22,19 @@
         placeholder="Contraseña"
         [(ngModel)]="password"
         name="password"
-        required
       />
 
-      <p
-        class="error"
-        *ngIf="
-          formLogin.submitted &&
-          (!usuarioOCorreo || !password)
-        "
-      >
-        Completá usuario/correo y contraseña.
-      </p>
-
-      <button type="submit">
+      <button type="button" (click)="iniciarSesion()">
         Iniciar sesión
       </button>
 
     </form>
 
-    <p
-      class="error"
-      *ngIf="mensajeError"
-    >
-      {{ mensajeError }}
-    </p>
-
-    <p class="registro-link">
+    <p class="registro">
       ¿No tenés cuenta?
-
-      <a routerLink="/registro">
-        Registrate
-      </a>
+      <a routerLink="/registro">Registrate</a>
     </p>
 
-  </div>
+  </section>
 
 </div>

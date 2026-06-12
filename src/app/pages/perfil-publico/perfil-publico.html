@@ -2,22 +2,30 @@
 
   <aside class="sidebar card">
 
-    <h2>LilaSocial 💜</h2>
+    <div class="brand">
+      <img src="favicon.png" alt="LilaSocial" />
+      <div>
+        <h2>LilaSocial</h2>
+      </div>
+    </div>
 
     <nav>
-      <a routerLink="/publicaciones">
-        Inicio
-      </a>
+      <a routerLink="/publicaciones">Inicio</a>
+      <a routerLink="/mi-perfil">Mi perfil</a>
+      <a routerLink="/guardados">Guardados</a>
+      <a routerLink="/compartidos">Compartidos</a>
 
-      <a routerLink="/mi-perfil">
-        Mi perfil
-      </a>
-
-      <a routerLink="/dashboard-usuarios">
+      <a
+        *ngIf="usuarioActual?.perfil === 'administrador'"
+        routerLink="/dashboard-usuarios"
+      >
         Usuarios
       </a>
 
-      <a routerLink="/dashboard-estadisticas">
+      <a
+        *ngIf="usuarioActual?.perfil === 'administrador'"
+        routerLink="/dashboard-estadisticas"
+      >
         Estadísticas
       </a>
     </nav>
@@ -31,28 +39,33 @@
       *ngIf="usuario"
     >
 
-      <div
-        class="avatar-real"
-        *ngIf="usuario?.fotoPerfil"
-      >
-        <img
-          [src]="usuario.fotoPerfil"
-          alt="Foto perfil"
-        />
-      </div>
+      <div class="perfil-avatar">
 
-      <div
-        class="avatar-grande"
-        *ngIf="!usuario?.fotoPerfil"
-      >
-        {{ usuario?.nombre?.charAt(0) }}
+        <div
+          class="avatar-real"
+          *ngIf="usuario?.fotoPerfil"
+        >
+          <img
+            [src]="usuario.fotoPerfil"
+            alt="Foto perfil"
+          />
+        </div>
+
+        <div
+          class="avatar-grande"
+          *ngIf="!usuario?.fotoPerfil"
+        >
+          {{ usuario?.nombre?.charAt(0) }}
+        </div>
+
       </div>
 
       <div class="info">
 
+        <span class="etiqueta">Perfil público</span>
+
         <h1>
-          {{ usuario?.nombre }}
-          {{ usuario?.apellido }}
+          {{ usuario?.nombre }} {{ usuario?.apellido }}
         </h1>
 
         <p class="username">
@@ -60,7 +73,7 @@
         </p>
 
         <p class="descripcion">
-          {{ usuario?.descripcion }}
+          {{ usuario?.descripcion || 'Este usuario todavía no agregó una descripción.' }}
         </p>
 
         <div class="datos">
@@ -88,12 +101,13 @@
 
     <section class="mis-publicaciones">
 
-      <h2>
-        Últimas publicaciones
-      </h2>
+      <div class="section-title">
+        <h2>Últimas publicaciones</h2>
+        <p>Publicaciones recientes de este usuario.</p>
+      </div>
 
       <p
-        class="sin-publicaciones"
+        class="sin-publicaciones card"
         *ngIf="publicaciones.length === 0"
       >
         Este usuario todavía no tiene publicaciones.

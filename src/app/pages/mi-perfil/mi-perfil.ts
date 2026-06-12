@@ -37,11 +37,16 @@ export class MiPerfil implements OnInit {
   }
 
   cargarMisPublicaciones() {
-    this.publicacionesService
-      .misUltimas()
-      .subscribe((respuesta: any) => {
-        this.publicaciones = respuesta;
-      });
+  this.publicacionesService
+    .misUltimas()
+    .subscribe((respuesta: any) => {
+      this.publicaciones = respuesta.map((publicacion: any) => ({
+        ...publicacion,
+        usuario: publicacion.usuario?._id
+          ? publicacion.usuario
+          : this.usuario,
+      }));
+    });
   }
 
   cerrarSesion() {

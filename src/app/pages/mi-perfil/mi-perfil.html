@@ -2,16 +2,18 @@
 
   <aside class="sidebar card">
 
-    <h2>LilaSocial 💜</h2>
+    <div class="brand">
+      <img src="favicon.png" alt="LilaSocial" />
+      <div>
+        <h2>LilaSocial</h2>
+      </div>
+    </div>
 
     <nav>
-      <a routerLink="/publicaciones">
-        Inicio
-      </a>
-
-      <a routerLink="/mi-perfil">
-        Mi perfil
-      </a>
+      <a routerLink="/publicaciones">Inicio</a>
+      <a routerLink="/mi-perfil">Mi perfil</a>
+      <a routerLink="/guardados">Guardados</a>
+      <a routerLink="/compartidos">Compartidos</a>
 
       <button
         type="button"
@@ -28,28 +30,33 @@
 
     <section class="perfil-header card">
 
-      <div
-        class="avatar-real"
-        *ngIf="usuario?.fotoPerfil"
-      >
-        <img
-          [src]="usuario.fotoPerfil"
-          alt="Foto perfil"
-        />
-      </div>
+      <div class="perfil-avatar">
 
-      <div
-        class="avatar-grande"
-        *ngIf="!usuario?.fotoPerfil"
-      >
-        {{ usuario?.nombre?.charAt(0) }}
+        <div
+          class="avatar-real"
+          *ngIf="usuario?.fotoPerfil"
+        >
+          <img
+            [src]="usuario.fotoPerfil"
+            alt="Foto perfil"
+          />
+        </div>
+
+        <div
+          class="avatar-grande"
+          *ngIf="!usuario?.fotoPerfil"
+        >
+          {{ usuario?.nombre?.charAt(0) }}
+        </div>
+
       </div>
 
       <div class="info">
 
+        <span class="etiqueta">Mi perfil</span>
+
         <h1>
-          {{ usuario?.nombre }}
-          {{ usuario?.apellido }}
+          {{ usuario?.nombre }} {{ usuario?.apellido }}
         </h1>
 
         <p class="username">
@@ -57,7 +64,7 @@
         </p>
 
         <p class="descripcion">
-          {{ usuario?.descripcion }}
+          {{ usuario?.descripcion || 'Sin descripción por el momento.' }}
         </p>
 
         <div class="datos">
@@ -92,12 +99,13 @@
 
     <section class="mis-publicaciones">
 
-      <h2>
-        Mis últimas publicaciones
-      </h2>
+      <div class="section-title">
+        <h2>Mis últimas publicaciones</h2>
+        <p>Estas son tus publicaciones más recientes.</p>
+      </div>
 
       <p
-        class="sin-publicaciones"
+        class="sin-publicaciones card"
         *ngIf="publicaciones.length === 0"
       >
         Todavía no realizaste publicaciones.

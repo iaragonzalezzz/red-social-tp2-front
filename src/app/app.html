@@ -12,23 +12,27 @@
     </h2>
 
     <p>
-      ¿Deseás extender tu sesión?
+      ¿Deseás extender tu sesión por 15 minutos más?
     </p>
 
     <div class="botones">
 
       <button
         class="btn cancelar"
+        type="button"
+        [disabled]="refrescando"
         (click)="cerrarSesion()"
       >
-        No
+        No, cerrar sesión
       </button>
 
       <button
         class="btn confirmar"
+        type="button"
+        [disabled]="refrescando"
         (click)="extenderSesion()"
       >
-        Sí, extender
+        {{ refrescando ? 'Extendiendo...' : 'Sí, extender' }}
       </button>
 
     </div>

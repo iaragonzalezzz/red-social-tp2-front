@@ -49,3 +49,22 @@
 .vacio {
   color: #777;
 }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.brand img {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+}
+
+.brand h2 {
+  color: #9333ea;
+  margin: 0;
+  font-size: 26px;
+}

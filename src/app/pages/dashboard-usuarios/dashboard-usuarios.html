@@ -1,38 +1,42 @@
 <div class="dashboard-container">
 
-  <h1>Dashboard Usuarios</h1>
+<div class="formulario card">
 
-  <div class="formulario card">
+    <h2>Crear nuevo usuario</h2>
 
-    <input
-      type="text"
-      placeholder="Nombre"
-      [(ngModel)]="nombre"
-    />
+    <div class="form-grid">
 
-    <input
-      type="text"
-      placeholder="Apellido"
-      [(ngModel)]="apellido"
-    />
+      <input
+        type="text"
+        placeholder="Nombre"
+        [(ngModel)]="nombre"
+      />
 
-    <input
-      type="email"
-      placeholder="Correo"
-      [(ngModel)]="correo"
-    />
+      <input
+        type="text"
+        placeholder="Apellido"
+        [(ngModel)]="apellido"
+      />
 
-    <input
-      type="text"
-      placeholder="Usuario"
-      [(ngModel)]="nombreUsuario"
-    />
+      <input
+        type="email"
+        placeholder="Correo"
+        [(ngModel)]="correo"
+      />
 
-    <input
-      type="password"
-      placeholder="Contraseña"
-      [(ngModel)]="password"
-    />
+      <input
+        type="text"
+        placeholder="Usuario"
+        [(ngModel)]="nombreUsuario"
+      />
+
+      <input
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="password"
+      />
+
+    </div>
 
     <div class="radios">
 
@@ -60,6 +64,7 @@
 
     <button
       type="button"
+      class="boton-crear"
       (click)="crearUsuario()"
     >
       Crear usuario
@@ -74,12 +79,12 @@
     appSombra
   >
 
-    <div>
+    <div class="usuario-info">
       <h3>
         {{ usuario.nombre }} {{ usuario.apellido }}
       </h3>
 
-      <p>
+      <p class="username">
         @{{ usuario.nombreUsuario }}
       </p>
 
@@ -88,12 +93,12 @@
       </p>
 
       <p>
-        Perfil:
+        <strong>Perfil:</strong>
         {{ usuario.perfil | perfilNombre }}
       </p>
 
       <p>
-        Estado:
+        <strong>Estado:</strong>
         {{ usuario.activo | estadoUsuario }}
       </p>
     </div>

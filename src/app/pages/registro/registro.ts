@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -24,6 +23,7 @@ export class Registro {
   descripcion = '';
 
   fotoPerfil!: File;
+  nombreFotoPerfil = '';
 
   mensajeError = '';
 
@@ -33,7 +33,12 @@ export class Registro {
   ) {}
 
   seleccionarImagen(event: any) {
-    this.fotoPerfil = event.target.files[0];
+    const archivo = event.target.files[0];
+
+    if (archivo) {
+      this.fotoPerfil = archivo;
+      this.nombreFotoPerfil = archivo.name;
+    }
   }
 
   passwordInvalida() {

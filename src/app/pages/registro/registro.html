@@ -2,32 +2,36 @@
 
   <div class="card registro-card">
 
-    <h1>LilaSocial</h1>
-
-    <p class="subtitulo">
-      Creá tu cuenta
-    </p>
+    <div class="brand">
+      <img src="favicon.png" alt="LilaSocial" />
+      <h1>LilaSocial</h1>
+      <p>Creá tu cuenta y empezá a compartir</p>
+    </div>
 
     <form
       #formRegistro="ngForm"
       (ngSubmit)="registrarse()"
     >
 
-      <input
-        type="text"
-        placeholder="Nombre"
-        [(ngModel)]="nombre"
-        name="nombre"
-        required
-      />
+      <div class="form-grid">
 
-      <input
-        type="text"
-        placeholder="Apellido"
-        [(ngModel)]="apellido"
-        name="apellido"
-        required
-      />
+        <input
+          type="text"
+          placeholder="Nombre"
+          [(ngModel)]="nombre"
+          name="nombre"
+          required
+        />
+
+        <input
+          type="text"
+          placeholder="Apellido"
+          [(ngModel)]="apellido"
+          name="apellido"
+          required
+        />
+
+      </div>
 
       <input
         type="email"
@@ -45,27 +49,34 @@
         required
       />
 
-      <input
-        type="password"
-        placeholder="Contraseña"
-        [(ngModel)]="password"
-        name="password"
-        required
-      />
+      <div class="form-grid">
 
-      <input
-        type="password"
-        placeholder="Repetir contraseña"
-        [(ngModel)]="repetirPassword"
-        name="repetirPassword"
-        required
-      />
+        <input
+          type="password"
+          placeholder="Contraseña"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
 
-      <input
-        type="date"
-        [(ngModel)]="fechaNacimiento"
-        name="fechaNacimiento"
-      />
+        <input
+          type="password"
+          placeholder="Repetir contraseña"
+          [(ngModel)]="repetirPassword"
+          name="repetirPassword"
+          required
+        />
+
+      </div>
+
+      <label class="fecha-label">
+        <span>Fecha de nacimiento</span>
+        <input
+          type="date"
+          [(ngModel)]="fechaNacimiento"
+          name="fechaNacimiento"
+        />
+      </label>
 
       <textarea
         placeholder="Descripción breve"
@@ -73,11 +84,25 @@
         name="descripcion"
       ></textarea>
 
-      <input
-        type="file"
-        accept="image/*"
-        (change)="seleccionarImagen($event)"
-      />
+      <label class="file-box">
+
+        <span>Subir foto de perfil</span>
+
+        <small *ngIf="!nombreFotoPerfil">
+          Ningún archivo seleccionado
+        </small>
+
+        <small *ngIf="nombreFotoPerfil">
+          {{ nombreFotoPerfil }}
+        </small>
+
+        <input
+          type="file"
+          accept="image/*"
+          (change)="seleccionarImagen($event)"
+        />
+
+      </label>
 
       <p
         class="error"
@@ -100,8 +125,7 @@
         class="error"
         *ngIf="passwordInvalida()"
       >
-        La contraseña debe tener 8 caracteres,
-        una mayúscula y un número.
+        La contraseña debe tener 8 caracteres, una mayúscula y un número.
       </p>
 
       <p
@@ -129,13 +153,10 @@
     </p>
 
     <p class="login-link">
-
       ¿Ya tenés cuenta?
-
       <a routerLink="/login">
         Iniciá sesión
       </a>
-
     </p>
 
   </div>

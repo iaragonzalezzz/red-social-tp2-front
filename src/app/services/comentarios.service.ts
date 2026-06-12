@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ComentariosService {
 
-  apiUrl = 'https://red-social-tp2-back.onrender.com/comentarios';
+  apiUrl = 'https://red-social-tp2-back.onrender.com/publicaciones';
 
   constructor(private http: HttpClient) {}
 

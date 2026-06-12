@@ -28,6 +28,7 @@ export class Publicaciones implements OnInit {
   mensaje = '';
 
   imagen!: File;
+  nombreImagen = '';
 
   orden = 'fecha';
 
@@ -113,7 +114,12 @@ export class Publicaciones implements OnInit {
   }
 
   seleccionarImagen(event: any) {
-    this.imagen = event.target.files[0];
+    const archivo = event.target.files[0];
+
+    if (archivo) {
+      this.imagen = archivo;
+      this.nombreImagen = archivo.name;
+    }
   }
 
   crearPublicacion() {
@@ -132,6 +138,7 @@ export class Publicaciones implements OnInit {
         this.titulo = '';
         this.mensaje = '';
         this.imagen = undefined as any;
+        this.nombreImagen = '';
 
         this.recargarPublicaciones();
       });
